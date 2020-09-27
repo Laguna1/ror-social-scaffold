@@ -11,3 +11,4 @@ Rails.application.routes.draw do
   post '/friendships/update/:id', to: 'friendships#update', as: 'friend'
   post '/friendships/create/:id', to: 'friendships#create', as: 'create_friend'
 end
+end
