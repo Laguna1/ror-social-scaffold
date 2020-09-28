@@ -1,4 +1,4 @@
-class FriendshipController < ApplicationController
+class FriendshipsController < ApplicationController
   def create
     friendship = current_user.friendships.create(friend_id: params[:id])
     friendship.save
