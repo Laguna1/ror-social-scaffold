@@ -25,7 +25,7 @@ module ApplicationHelper
       'pls confirm your friend request'
     elsif User.find(params[:id]).pending_friends.include?(current_user)
       link_to 'Accept friend', friend_path(params[:id]), method: :post
-      link_to "Ignore", friendship_path(:id => friendship_id, :friend_id => user.id), :method => :delete
+      link_to "Ignore", friendship_path(:id => friendship_id, :friend_id => user.id), method: :delete
     else
       link_to 'Send friend request', create_friend_path(params[:id]), method: :post
     end
