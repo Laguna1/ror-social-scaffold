@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:likes) }
     it { should have_many(:friendships) }
     it { should have_many(:inverse_friendships) }
+    it { should have_many(:friends_posts) }
   end
 
   context 'Validations for new user' do
