@@ -1,10 +1,36 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
-  <p><%= friend_request_helper %></p>
+  <p><%#= friend_request_helper #%></p>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
       <%= render @posts %>
     </ul>
   </article>
+
+  <ol>
+  <% @user.friends.each do |friend| %>
+    <li>
+      <%= friend.name %>
+      <% if @user == current_user %>
+        <%= link_to 'Unfriend',
+        friendships_destroy_path(friendship_id: Friendship.find_friendship(@user.id, friend.id))  %>
+      <% end %>
+    </li>
+  <% end %>
+</ol>
+
+<h3> These people wants to be friend with <strong> <%= @user.name %> </strong> </h3>
+
+<ol>
+  <% @user.inverse_friendships.each do |friendship| %>
+    <li>
+      <%= User.find(friendship.user_id).name %>
+      <%= link_to 'Accept Friendship',
+      friendships_update_path(friendship_id: friendship.id) %>
+      <%= link_to 'Reject Friendship',
+      friendships_destroy_path(friendship_id: friendship.id) %>
+    </li>
+  <% end %>
+</ol>
 </section>
