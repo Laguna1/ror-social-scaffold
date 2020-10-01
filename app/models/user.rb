@@ -10,7 +10,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :friendships
-  has_many :inverse_friendships, -> { where confirmed: false }, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :friends, through: :friendships, dependent: :destroy
+  has_many :friends_posts, through: :friends, source: :posts
+  has_many :inverse_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
 
   def friends
     invitation_i_sent = Friendship.where(user_id: id, confirmed: true).pluck(:friend_id)
@@ -26,7 +28,7 @@ class User < ApplicationRecord
   def send_invitation(user)
     friendships.create(friend_id: user.id)
   end
-  
+
   # def friends
   #   friends_array = friendships.map{|friendship| friendship.friend if friendship.confirmed}
   #   friends_array + inverse_friendships.map{|friendship| friendship.user if friendship.confirmed}
@@ -52,5 +54,4 @@ class User < ApplicationRecord
   # def friend?(user)
   #   friends.include?(user)
   # end
-  
 end
