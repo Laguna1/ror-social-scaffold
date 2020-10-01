@@ -19,7 +19,7 @@
   <% end %>
 </ol>
 
-<h3> These people wants to be friend with <strong> <%= @user.name %> </strong> </h3>
+<h3> Pending Friend Request for <strong> <%= @user.name %> </strong> </h3>
 
 <ol>
   <% @user.inverse_friendships.each do |friendship| %>
