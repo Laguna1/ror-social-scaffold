@@ -6,9 +6,7 @@
         Name: <%= user.name %>
         <span class="profile-link">
           <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>|         
-          <% if  user_signed_in?  && !Friendship.reacted?(current_user.id, user.id) && current_user != user %>
-             <%= link_to 'Send Friendship', friendships_create_path(ids: {id1: current_user.id, id2: user.id})%>
-        <% end %>
+          <%= send_friendship(user) %>
         </span>
       </li>
     <% end %>

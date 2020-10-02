@@ -19,4 +19,10 @@ module ApplicationHelper
   def user_name
     return current_user.name unless current_user.nil?
   end
+
+  def send_friendship(user)
+    if  user_signed_in?  && !Friendship.reacted?(current_user.id, user.id) && current_user != user 
+      link_to 'Send Friendship', friendships_create_path(ids: {id1: current_user.id, id2: user.id})
+    end
+  end
 end
