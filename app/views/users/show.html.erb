@@ -25,10 +25,8 @@
   <% @user.inverse_friendships.each do |friendship| %>
     <li>
       <%= User.find(friendship.user_id).name %>
-      <%= link_to 'Accept Friendship',
-      friendships_update_path(friendship_id: friendship.id) %>
-      <%= link_to 'Reject Friendship',
-      friendships_destroy_path(friendship_id: friendship.id) %>
+      (<%= link_to 'Accept Friendship', friendships_update_path(friendship_id: friendship.id) %> |
+      <%= link_to 'Reject Friendship', friendships_destroy_path(friendship_id: friendship.id) %>)
     </li>
   <% end %>
 </ol>
