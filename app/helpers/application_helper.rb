@@ -1,3 +1,4 @@
+# rubocop:disable Style/GuardClause
 module ApplicationHelper
   def menu_link_to(link_text, link_path)
     class_name = current_page?(link_path) ? 'menu-item active' : 'menu-item'
@@ -21,27 +22,28 @@ module ApplicationHelper
   end
 
   def send_friendship(user)
-    if  user_signed_in?  && !Friendship.reacted?(current_user.id, user.id) && current_user != user 
-      link_to 'Send Friendship', friendships_create_path(ids: {id1: current_user.id, id2: user.id})
+    if user_signed_in? && !Friendship.reacted?(current_user.id, user.id) && current_user != user
+      link_to 'Send Friendship', friendships_create_path(ids: { id1: current_user.id, id2: user.id })
     end
   end
 
   def single_send_friendship
     if @user != current_user && !Friendship.reacted?(current_user.id, @user.id)
-      link_to 'Send a Friend requst', friendships_create_path(ids: {id1: current_user.id, id2: @user.id})
+      link_to 'Send a Friend request', friendships_create_path(ids: { id1: current_user.id, id2: @user.id })
     end
   end
 
   def unfriend(friend)
-     if @user == current_user
+    if @user == current_user
       link_to 'Unfriend', friendships_destroy_path(friendship_id: Friendship.find_friendship(@user.id, friend.id))
     end
   end
 
   def friend_request(friendship)
     if @user == current_user
-      ( link_to 'Accept | ', friendships_update_path(friendship_id: friendship.id) )  +
-      ( link_to 'Reject', friendships_destroy_path(friendship_id: friendship.id))
+      (link_to 'Accept | ', friendships_update_path(friendship_id: friendship.id)) +
+        (link_to 'Reject', friendships_destroy_path(friendship_id: friendship.id))
     end
   end
 end
+# rubocop:enable Style/GuardClause
