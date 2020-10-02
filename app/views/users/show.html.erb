@@ -7,14 +7,12 @@
     </ul>
   </article>
 
+  <h3> Friends </h3>
   <ol>
   <% @user.friends.each do |friend| %>
     <li>
       <%= friend.name %>
-      <% if @user == current_user %>
-        <%= link_to 'Unfriend',
-        friendships_destroy_path(friendship_id: Friendship.find_friendship(@user.id, friend.id))  %>
-      <% end %>
+      <%= unfriend(friend) %>
     </li>
   <% end %>
 </ol>
@@ -25,8 +23,7 @@
   <% @user.inverse_friendships.each do |friendship| %>
     <li>
       <%= User.find(friendship.user_id).name %>
-      (<%= link_to 'Accept Friendship', friendships_update_path(friendship_id: friendship.id) %> |
-      <%= link_to 'Reject Friendship', friendships_destroy_path(friendship_id: friendship.id) %>)
+      (<%= friend_request(friendship) %>)
     </li>
   <% end %>
 </ol>

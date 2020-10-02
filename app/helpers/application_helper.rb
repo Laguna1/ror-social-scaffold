@@ -25,4 +25,17 @@ module ApplicationHelper
       link_to 'Send Friendship', friendships_create_path(ids: {id1: current_user.id, id2: user.id})
     end
   end
+
+  def unfriend(friend)
+     if @user == current_user
+      link_to 'Unfriend', friendships_destroy_path(friendship_id: Friendship.find_friendship(@user.id, friend.id))
+    end
+  end
+
+  def friend_request(friendship)
+    if @user == current_user
+      ( link_to 'Accept | ', friendships_update_path(friendship_id: friendship.id) )  +
+      ( link_to 'Reject', friendships_destroy_path(friendship_id: friendship.id))
+    end
+  end
 end
