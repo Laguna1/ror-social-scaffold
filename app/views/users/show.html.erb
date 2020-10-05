@@ -1,9 +1,34 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
+      <span class="profile-link">         
+        <%= single_send_friendship %>
+      </span>
+
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
       <%= render @posts %>
     </ul>
   </article>
+
+  <h3> Friends </h3>
+  <ol>
+  <% @user.friends.each do |friend| %>
+    <li>
+      <%= friend.name %>
+      <%= unfriend(friend) %>
+    </li>
+  <% end %>
+</ol>
+
+<h3> These people wants to be friend with <strong> <%= @user.name %> </strong> </h3>
+
+<ol>
+  <% @user.inverse_friendships.each do |friendship| %>
+    <li>
+      <%= User.find(friendship.user_id).name %>
+      (<%= friend_request(friendship) %>)
+    </li>
+  <% end %>
+</ol>
 </section>
