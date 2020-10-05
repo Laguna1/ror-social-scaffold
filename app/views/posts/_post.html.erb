@@ -13,6 +13,8 @@
   </p>
 
   <div class='post-comments-section'>
+  <p>Comments:<%= " #{post.comments.count}" %></p>
+  <p>Likes:<%= " #{post.likes.count}" %></p>
     <% post.comments.each do |comment| %>
       <div class="post-comments">
         <p>
