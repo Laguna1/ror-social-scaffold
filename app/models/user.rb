@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships, dependent: :destroy
   has_many :friends_posts, through: :friends, source: :posts
+  has_many :pending_friendships, -> { where confirmed: false }, class_name: "Friendship", foreign_key: "user_id"
+  has_many :confirmed_friendships, -> { where confirmed: true }, class_name: "Friendship"
   has_many :inverse_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
 
   def friends

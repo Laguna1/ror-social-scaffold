@@ -9,14 +9,21 @@ class FriendshipsController < ApplicationController
 
   def destroy
     friendship = Friendship.find(params[:friendship_id])
+    user = friendship.user_id
+    friend = friendship.friend_id
+    if (friendship2 = Friendship.find_by(user_id: friend, friend_id: user))
+      friendship2.destroy
+    end
     friendship.destroy
     redirect_to user_path(current_user.id)
   end
 
   def update
     friendship = Friendship.find(params[:friendship_id])
-    p current_user
-    friendship.update(confirmed: true)
+    if friendship.update(confirmed: true)
+      friendship = Friendship.new(user_id: friendship.friend_id, friend_id: friendship.user_id, confirmed: true)
+      friendship.save
+    end
     redirect_to user_path(friendship.friend_id)
-  end
+   end
 end
