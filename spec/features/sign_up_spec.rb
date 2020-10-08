@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Sign Up Feature', type: :feature do
+RSpec.describe 'Sign Up Features', type: :feature do
   scenario 'it is possible for user to create account' do
     visit new_user_registration_path
     fill_in 'Name', with: 'test_user'
