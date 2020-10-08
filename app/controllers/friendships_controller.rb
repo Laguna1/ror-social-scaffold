@@ -23,8 +23,8 @@ class FriendshipsController < ApplicationController
     if friendship.update(confirmed: true)
       friendship = Friendship.new(user_id: friendship.friend_id, friend_id: friendship.user_id, confirmed: true)
       friendship.save
-      
+
     end
     redirect_to user_path(friendship.friend_id)
-   end
+  end
 end

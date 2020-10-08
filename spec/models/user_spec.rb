@@ -11,7 +11,6 @@ RSpec.describe User, type: :model do
     it { should have_many(:pending_friendships) }
     it { should have_many(:confirmed_friendships) }
     it { should have_many(:inverse_friends) }
-
   end
 
   context 'Validations for new User' do
