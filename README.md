@@ -9,7 +9,7 @@
 
 ## Live Demo
 
-https://vast-waters-89318.herokuapp.com/users/sign_in
+[Stay-In-Touch](https://vast-waters-89318.herokuapp.com/users/sign_in)
 
 
 ## Getting Started
