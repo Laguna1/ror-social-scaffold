@@ -21,15 +21,15 @@ module ApplicationHelper
     return current_user.name unless current_user.nil?
   end
 
-  def send_friendship(user)
-    if user_signed_in? && !Friendship.reacted?(current_user.id, user.id) && current_user != user
-      link_to 'Send Friendship', friendships_create_path(ids: { id1: current_user.id, id2: user.id })
+  def send_friend_requests
+    if current_user != @user && !current_user.friend?(@user)
+      link_to 'Send Invitation', user_friendships_path(@user), method: :post, class: 'btn btn-primary'
     end
   end
 
-  def single_send_friendship
-    if @user != current_user && !Friendship.reacted?(current_user.id, @user.id)
-      link_to 'Send a Friend request', friendships_create_path(ids: { id1: current_user.id, id2: @user.id })
+  def send_friend_request(user)
+    if current_user != user && !current_user.friend?(user)
+      link_to 'Send Invitation', user_friendships_path(user), method: :post, class: 'btn btn-primary'
     end
   end
 
@@ -39,11 +39,9 @@ module ApplicationHelper
     end
   end
 
-  def friend_request(friendship)
-    if @user == current_user
-      (link_to 'Accept | ', friendships_update_path(friendship_id: friendship.id)) +
-        (link_to 'Reject', friendships_destroy_path(friendship_id: friendship.id))
-    end
+  def accpect_decline_request(friend)
+    link_to "Accept", user_friendship_path(@user, id: current_user.id), method: :put, class: "btn btn-success"
+    link_to 'Decline', friendships_destroy_path(friendship_id: Friendship.find_friendship(@user.id, friend.id))
   end
 end
 # rubocop:enable Style/GuardClause

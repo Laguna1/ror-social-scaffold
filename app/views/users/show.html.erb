@@ -1,7 +1,7 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
-      <span class="profile-link">         
-        <%= single_send_friendship %>
+      <span class="profile-link">
+      <%=send_friend_requests%>       
       </span>
 
   <article class="timeline">
@@ -27,7 +27,7 @@
   <% @user.inverse_friendships.each do |friendship| %>
     <li>
       <%= User.find(friendship.user_id).name %>
-      (<%= friend_request(friendship) %>)
+      <%= accpect_decline_request(friend)%>
     </li>
   <% end %>
 </ol>
