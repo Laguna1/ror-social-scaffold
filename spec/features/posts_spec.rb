@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Posts controller tests', type: :feature do
+RSpec.describe 'Posts Features', type: :feature do
   let(:user) do
     User.new(name: 'user0', email: 'user0@mail',
              password: 'password', password_confirmation: 'password')
@@ -49,7 +49,7 @@ RSpec.describe 'Posts controller tests', type: :feature do
     expect(page).to have_selector 'p', text: 'Hello'
   end
 
-  scenario "Timeline page doesn't shows the post from 'not friends'" do
+  scenario "Timeline page doesn't show the post from 'no-friends'" do
     save_in_database
     log_in
     expect(page).to_not have_selector 'p', text: 'Nice to be here!'
