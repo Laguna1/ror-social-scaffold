@@ -3,7 +3,16 @@
       <span class="profile-link">         
         <%= single_send_friendship %>
       </span>
+  <h3><strong> Friend Requests </strong> </h3>
 
+<ol>
+  <% @user.inverse_friendships.each do |friendship| %>
+    <li>
+      <%= User.find(friendship.user_id).name %>
+      (<%= friend_request(friendship) %>)
+    </li>
+  <% end %>
+</ol>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
@@ -21,14 +30,5 @@
   <% end %>
 </ol>
 
-<h3> These people wants to be friend with <strong> <%= @user.name %> </strong> </h3>
 
-<ol>
-  <% @user.inverse_friendships.each do |friendship| %>
-    <li>
-      <%= User.find(friendship.user_id).name %>
-      (<%= friend_request(friendship) %>)
-    </li>
-  <% end %>
-</ol>
 </section>

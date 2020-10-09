@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Friendship, type: :model do
-  context 'Associations for friendship' do
+  context 'Associations for Friendship' do
     let(:friendship) { Friendship.new(confirmed: false) }
 
     it { should belong_to(:user) }

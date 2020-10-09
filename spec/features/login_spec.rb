@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Log In Feature', type: :feature do
+RSpec.describe 'Log In Features', type: :feature do
   let(:user) { User.new(name: 'newlog', email: 'user@site.com', password: 'some123pass') }
 
   scenario 'User cannot log in with empty email field' do
