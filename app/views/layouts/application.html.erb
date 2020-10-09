@@ -23,7 +23,7 @@
         <%= link_to "#{current_user.name}", current_user %>  
         </div>
         <div class="menu-item top-invite">
-        <%= menu_link_to 'Friendships invitations', current_user %>
+        <%#= menu_link_to 'Friendships invitations', current_user #%>
         </div>
         <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
       <% else %>
