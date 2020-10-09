@@ -9,7 +9,7 @@
 
 ## Live Demo
 
-TBA
+https://vast-waters-89318.herokuapp.com/users/sign_in
 
 
 ## Getting Started
@@ -71,7 +71,17 @@ TBA
 
 ## Authors
 
-TBA
+
+👤 **Morah Paul**
+
+- GitHub:[@github/chinweokwu](https://github.com/chinweokwu)
+- Linkedin:[linkedin/morah](https://www.linkedin.com/)
+
+👤 **Oksana Petrova**
+
+- GitHub:[@github/Laguna1](https://github.com/Laguna1)
+- Linkedin:[linkedin/OksanaPetrova](https://www.linkedin.com/in/oksana-petrova/)
+- Twitter:[@OksanaP48303303](https://twitter.com/OksanaP48303303)
 
 ## 🤝 Contributing
 
