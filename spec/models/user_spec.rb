@@ -1,15 +1,19 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
-  context 'Associations for user' do
+  context 'Associations for User' do
     it { should have_many(:posts) }
     it { should have_many(:comments) }
     it { should have_many(:likes) }
     it { should have_many(:friendships) }
     it { should have_many(:inverse_friendships) }
     it { should have_many(:friends_posts) }
+    it { should have_many(:friends) }
+    it { should have_many(:pending_friendships) }
+    it { should have_many(:confirmed_friendships) }
+    it { should have_many(:inverse_friends) }
   end
 
-  context 'Validations for new user' do
+  context 'Validations for new User' do
     let(:user) { User.new(name: 'anyname', email: 'anyname@mail.com', password: 'password') }
 
     it 'It checks if user valid' do
